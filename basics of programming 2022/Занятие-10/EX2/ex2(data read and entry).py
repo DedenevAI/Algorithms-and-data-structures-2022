@@ -24,9 +24,9 @@ def transform_matrix (m, trace):
 
 
 # matrix = [[-1,-2,-3],[-3,-4,-5],[-5,-6,-7]]
-m = [x.strip().split() for x in open('C:\\Users\\Alex\\Desktop\\Основы\\DedenevAI\\basics of programming 2022\\Занятие-10\\EX2\\matrix_for_read.txt')]
-print(m)
-
+m = []
+# file = 
+m = (x.strip().split() for x in open('C:\\Users\\Alex\\Desktop\\Основы\\DedenevAI\\basics of programming 2022\\Занятие-10\\EX2\\matrix_for_read.txt'))
 
 
 # matrixTrace = find_trace(matrix)
