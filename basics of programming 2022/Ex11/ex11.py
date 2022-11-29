@@ -2,9 +2,9 @@
 Вариант - 7
 Red Hat OpenShift; Репозиторий: github.com/openshift/origin*
 """
-from tkinter import*
 import json
 import requests
+from tkinter import*
 #@this function implements a button click, returns the result in the form of information from JSON git
 def buttonAction():
     with open("D:\\GitProject\\DedenevAI\\DedenevAI\\basics of programming 2022\\Ex11\\file_for_write_data","w") as file:
