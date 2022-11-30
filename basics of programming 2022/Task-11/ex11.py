@@ -12,7 +12,7 @@ def buttonAction():
         url = f"https://api.github.com/users/{user}"
         userInfo = requests.get(url).json()
         enum = ['company', 'created_at', 'email', 'id', 'name', 'url']
-        data = userInfo.enum()
+        data = userInfo.keys()
         for i in data:
             if i in enum:
                 file.write(f"{i}:{userInfo[i]}" + '\n')
