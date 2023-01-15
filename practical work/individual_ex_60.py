@@ -11,7 +11,7 @@ from telebot import types
 API_TOKEN = '5952398693:AAF7xvTeDuZnSJc9w32dL8pe0wcoxCVloN0'
 bot = telebot.TeleBot(API_TOKEN)
 
-#starting command
+#starting command and menu buttons
 @bot.message_handler(commands=['start'])
 def start(message):
    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -21,8 +21,9 @@ def start(message):
    
    markup.add(item1,item2)
 
-   bot.send_message(message.chat.id, "👋 Привет, {0.first_name}! Я Ваш бот-помощник! Я осуществляю поиск статьи по ключевой фразе, получаю URL-ссылки статей и формирую из них файл, который отправляю Вам!".format(message.from_user), reply_markup = markup)
+   bot.send_message(message.chat.id, "👋 Привет, {0.first_name}! Я Ваш бот-помощник! Я осуществляю поиск статей по ключевой фразе, получаю URL-ссылки статей и формирую из них файл, который отправляю Вам!".format(message.from_user), reply_markup = markup)
 
+#menu contents
 @bot.message_handler(content_types=['text'])
 def bot_message(message): 
     if message.chat.type == 'private':
@@ -32,12 +33,13 @@ def bot_message(message):
         elif message.text == '🎫Хочу получить список статей!':
             sent = bot.send_message(message.chat.id, 'Введите ключевое слово, по которому будет осуществлен поиск')
             bot.register_next_step_handler(sent, searcher)
+        
         else:
-            bot.send_message(message.chat.id, 'Пожалуйста, воспользуйтесь пунктами меню')
+            bot.send_message(message.chat.id, 'Пожалуйста, воспользуйтесь пунктами меню') #appears if the user's message does not satisfy the menu condition
 
 @bot.message_handler(func=lambda message: True)
 def searcher(message):
-    key = message.text
+    key = message.text #search key
     bot.send_message(message.chat.id, "Выполняю поиск статей по ключевому слову " + key + "......")
     
     wikipedia.set_lang("en")
@@ -57,7 +59,7 @@ def searcher(message):
             s = random.choice(e.options)
             page1 = wikipedia.page(s)
             test.append(page1.url)
-    with open("references.txt", "w") as file:
+    with open("references.txt", "w") as file: #writing links to a file
         for row in test:
             f = file.write(row + "\n")
     
