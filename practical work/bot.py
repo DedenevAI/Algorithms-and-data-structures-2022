@@ -8,7 +8,7 @@ from random import random
 from telebot import types
 
 #bot initialization
-API_TOKEN = '5952398693:AAF7xvTeDuZnSJc9w32dL8pe0wcoxCVloN0'
+API_TOKEN = '*********'
 bot = telebot.TeleBot(API_TOKEN)
 
 #starting command and menu buttons
